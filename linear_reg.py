@@ -7,13 +7,14 @@ import statsmodels.api as sm
 
 # Simluate data- create an array that 
 def simulate_data(size1):
-    x1= np.random.exponential(scale= 1/9000, size= size1)
+    x1= np.random.exponential(scale= 9000, size= size1)
     x2= np.random.poisson(lam= 15, size= size1)
-    eps= np.random.normal(loc= 0, scale= 1, size= size1)
-    beta = [2, 5]
-    x1_vector= np.array(x1)
-    x2_vector= np.array(x2)
-    X = np.column_stack((x1, x2))
+    eps= np.random.randn(size1)
+    x0=  np.ones(size1)
+    # x1_vector= np.array(x1)
+    # x2_vector= np.array(x2)
+    X = np.column_stack((x0, x1, x2))
+    beta = np.random.normal(0, 2.5, size= X.shape[1])
     y = X.dot(beta) + eps
     results = {"y": y,
                "X": X,
