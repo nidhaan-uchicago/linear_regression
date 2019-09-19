@@ -14,17 +14,6 @@ def simulate_data():
     RETURNS
         data (dict) contains X, y, and beta vectors.
     """
-    Num = 1000
-    random_p = 9000
-    poisson_p = 15
-
-
-
-
-
-
-
-
 
 
 def compare_models():
@@ -69,7 +58,19 @@ def run_hospital_regression():
     RETURNS
         results (str) the statsmodels regression output
     """
-    pass
+    path_to_data = "hospital_charge_sample.csv"
+    hospital = pd.read_csv(path_to_data)
+    hospital.head()
+
+    # x1 = average covered charges, x2 = number of hospital discharges associated with a given time period, y = average medicare payments
+    x1 = hospital["Average Covered Charges"]
+    x2 = hospital["Total Discharges"]
+    y = hospital["Average Medicare Payments"]
+
+    model = sm.OLS(y, x1, x2)
+
+    # return
+    return model
  
 
 ### END ###
