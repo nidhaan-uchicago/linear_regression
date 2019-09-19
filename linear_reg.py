@@ -34,7 +34,7 @@ def compare_models():
     pass
 
 
-def load_hospital_data():
+def load_hospital_data(path_to_data):
     """
     Loads the hospital charges data set found at data.gov.
     INPUT
@@ -42,10 +42,13 @@ def load_hospital_data():
     RETURNS
         clean_df (pandas.DataFrame) containing the cleaned and formatted dataset for regression
     """
-    pass
+    df = pd.read_csv(path_to_data)
+    clean_df = pd.DataFrame(df)
+
+    print(clean_df)
 
 
-def prepare_data():
+def prepare_data(df):
     """
     Prepares hospital data for regression (basically turns df into X and y).
     INPUT
@@ -53,10 +56,16 @@ def prepare_data():
     RETURNS
         data (dict) containing X design matrix and y response variable
     """
-    pass
+    x1 = df["Average Covered Charges"]
+    x2 = df["Total Discharges"]
+    y = df["Average Medicare Payments"]
+
+    data = {"y":y, "x1":x1, 
+            "x2":x2}
+    print(data)
 
 
-def run_hospital_regression():
+def run_hospital_regression(path_to_data):
     """
     Loads hospital charge data and runs OLS on it.
     INPUT
@@ -64,7 +73,18 @@ def run_hospital_regression():
     RETURNS
         results (str) the statsmodels regression output
     """
-    pass
+    hospital = pd.read_csv(path_to_data)
+    hospital.head()
+
+    # x1 = average covered charges, x2 = number of hospital discharges associated with a given time period, y = average medicare payments
+    x1 = hospital["Average Covered Charges"]
+    x2 = hospital["Total Discharges"]
+    y = hospital["Average Medicare Payments"]
+
+    results = sm.OLS(y, x1, x2)
+
+    # return
+    print(results)
  
 
 ### END ###
