@@ -5,15 +5,21 @@ import pandas as pd
 from sklearn.linear_model import LinearRegression
 import statsmodels.api as sm
 
-
-def simulate_data():
-    """
-    Simulates data for testing linear_regression models.
-    INPUT
-        nobs (int) the number of observations in the dataset
-    RETURNS
-        data (dict) contains X, y, and beta vectors.
-    """
+# Simluate data- create an array that 
+def simulate_data(size1):
+    x1= np.random.exponential(scale= 9000, size= size1)
+    x2= np.random.poisson(lam= 15, size= size1)
+    eps= np.random.randn(size1)
+    x0=  np.ones(size1)
+    # x1_vector= np.array(x1)
+    # x2_vector= np.array(x2)
+    X = np.column_stack((x0, x1, x2))
+    beta = np.random.normal(0, 2.5, size= X.shape[1])
+    y = X.dot(beta) + eps
+    results = {"y": y,
+               "X": X,
+               "beta": beta}
+    print(results)
 
 
 def compare_models():
