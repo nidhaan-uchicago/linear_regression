@@ -36,9 +36,10 @@ def load_hospital_data(path_to_data):
     RETURNS
         clean_df (pandas.DataFrame) containing the cleaned and formatted dataset for regression
     """
-    clean_df = pd.read_csv(path_to_data)
+    df = pd.read_csv(path_to_data)
+    clean_df = pd.DataFrame(df)
 
-    return clean_df
+    print(clean_df)
 
 
 def prepare_data(df):
@@ -53,7 +54,9 @@ def prepare_data(df):
     x2 = df["Total Discharges"]
     y = df["Average Medicare Payments"]
 
-    data = pd.DataFrame[]
+    data = {"y":y, "x1":x1, 
+            "x2":x2}
+    print(data)
 
 
 def run_hospital_regression(path_to_data):
@@ -75,7 +78,7 @@ def run_hospital_regression(path_to_data):
     results = sm.OLS(y, x1, x2)
 
     # return
-    return results
+    print(results)
  
 
 ### END ###
