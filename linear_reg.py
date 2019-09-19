@@ -28,7 +28,7 @@ def compare_models():
     pass
 
 
-def load_hospital_data():
+def load_hospital_data(file):
     """
     Loads the hospital charges data set found at data.gov.
     INPUT
@@ -36,7 +36,10 @@ def load_hospital_data():
     RETURNS
         clean_df (pandas.DataFrame) containing the cleaned and formatted dataset for regression
     """
-    pass
+    path_to_data = file
+    clean_df = pd.read_csv(path_to_data)
+
+    return clean_df
 
 
 def prepare_data():
