@@ -14,7 +14,17 @@ def simulate_data():
     RETURNS
         data (dict) contains X, y, and beta vectors.
     """
-    pass
+    Num = 1000
+    random_p = 9000
+    poisson_p = 15
+
+
+
+
+
+
+
+
 
 
 def compare_models():
